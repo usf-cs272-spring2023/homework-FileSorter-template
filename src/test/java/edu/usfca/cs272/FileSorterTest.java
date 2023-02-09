@@ -30,7 +30,7 @@ import edu.usfca.cs272.FileSorter.FileMetadata;
  * Tests for the {@link FileSorter} class.
  *
  * @author CS 272 Software Development (University of San Francisco)
- * @version Fall 2022
+ * @version Spring 2023
  */
 @TestMethodOrder(MethodName.class)
 public class FileSorterTest {
