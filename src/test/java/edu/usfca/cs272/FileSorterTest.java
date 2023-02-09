@@ -206,12 +206,13 @@ public class FileSorterTest {
 			if (types.length == 1) {
 				String name = types[0].getTypeName();
 
-				Supplier<String> error1 = () -> String.format(
-						"%nThe Comparable interface not properly implemented. %nFound: %s%n", name);
-				Supplier<String> error2 = () -> String.format(
-						"%nThe interface generic type not properly specified. %nFound: %s%n", name);
+				String format1 = "%nThe Comparable interface not properly implemented. %nFound: %s%n";
+				String format2 = "%nThe interface generic type not properly specified. %nFound: %s%n";
+				Supplier<String> error1 = () -> String.format(format1, name);
+				Supplier<String> error2 = () -> String.format(format2, name);
 
-				assertAll(() -> assertTrue(name.contains("Comparable"), error1),
+				assertAll(
+						() -> assertTrue(name.contains("Comparable"), error1),
 						() -> assertTrue(name.contains("FileMetadata"), error2));
 			}
 			else {
@@ -304,8 +305,7 @@ public class FileSorterTest {
 		boolean actualAnonymous = test.isAnonymousClass();
 		boolean actualMember = test.isMemberClass();
 		boolean actualStatic = Modifier.isStatic(test.getModifiers());
-		boolean actualLambda = test.isSynthetic()
-				&& test.getTypeName().contains("$$Lambda$");
+		boolean actualLambda = test.isSynthetic() && test.getTypeName().contains("$$Lambda$");
 
 		assertAll(
 				() -> assertEquals(expectAnonymous, actualAnonymous, "is anonymous?"),
